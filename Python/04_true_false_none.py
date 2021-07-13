@@ -7,7 +7,7 @@ if is_ok:
 else:
     print('NG')
 
-# 0 でない数値（正または負の数値は False になる）
+# 0 でない数値（正または負の数値は True、0 は False になる）
 is_ok = 1
 if is_ok:
     print('OK')
