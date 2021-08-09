@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>JavaScript Basic</title>
+    </head>
+    <body>
+        <h1 id="text1"></h1>
+        <!--
+            一般的なブラウザでは、スクリプトの読み込み・実行が完了するまで
+            以降の描画をブロックするため、スクリプトは</body>の直前に
+            記載するのがよい
+        -->
+        <!-- html 内に直接スクリプトを記載する場合 -->
+        <!--
+            type 属性の HTML5 でのデフォルトは"text/JavaScript"
+            であるため省略可能
+        -->
+        <script type="text/JavaScript">
+            console.log('Hello Wordl!');
+        </script>
+
+        <!-- 外部ファイルを読み込む場合（同一サーバ内） -->
+        <script src="../js/01_basic.js"></script>
+        <script src="../js/03_datastructure.js"></script>
+        <script src="../js/04_true_false.js"></script>
+        <script src="../js/05_control_flow.js"></script>
+        <script src="../js/06_function.js"></script>
+        <script src="../js/10_class.js"></script>
+        
+        <!-- 外部ファイルを読み込む場合（CDN） -->
+        <!--
+            CDN からライブラリを読み込む場合は、改ざんがないことを
+            integrity 属性（接頭辞-ハッシュ値）で確認するとよい
+            ハッシュ値は「SRI Hash Generator」を利用すると手軽に作成できる
+        -->
+        <script>
+            src="https://code.jquery.com/jquery-1.12.1.min.js"
+            integrity="sha384-F7n3undrbWQvHm0AKtDnmXEJtmwOMrz6OI1A1JpsI13QF+H/j0Mv0W9gHaOXJ65k"
+            crossorigin="anonymous"
+        </script>
+    </body>
+</html>
