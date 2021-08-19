@@ -1,29 +1,24 @@
 // ヘッダー有りレイアウトのコンポーネント
-import { memo, ReactNode, VFC } from "react";
-
-
-
-
-import React from 'react';
+import React, { memo, ReactNode, VFC } from "react";
+import { useHistory } from "react-router-dom";
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import { ListItemText } from "@material-ui/core";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import { AccountCircleButton } from '../atoms/button/AccountCircleButton';
 import { Home, People, Settings } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
+import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
+
+import { AccountCircleButton } from '../atoms/button/AccountCircleButton';
+
 
 const drawerWidth = 240;
 
@@ -71,17 +66,7 @@ type Props = {
   window?: () => Window;
 };
 
-// interface Props {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window?: () => Window;
-// }
-
-
-
-export default function HeaderLayout(props: Props) {
+export const HeaderLayout: VFC<Props> = memo((props) => {
   const { children, window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -103,7 +88,7 @@ export default function HeaderLayout(props: Props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-      <ListItem button>
+        <ListItem button>
           <ListItemIcon>
             <Home />
           </ListItemIcon>
@@ -184,4 +169,4 @@ export default function HeaderLayout(props: Props) {
       </main>
     </div>
   );
-}
+});

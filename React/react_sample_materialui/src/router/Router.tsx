@@ -1,10 +1,9 @@
 import { memo, VFC } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home } from "../components/pages/Home";
 
-import Login from "../components/pages/Login";
+import { Login } from "../components/pages/Login";
 import { Page404 } from "../components/pages/Page404";
-import HeaderLayout from "../components/templates/HeaderLayout";
+import { HeaderLayout } from "../components/templates/HeaderLayout";
 // import { LoginUserProvider } from "../providers/LoginUserProvider";
 import { homeRoutes } from "./HomeRouters";
 
@@ -24,15 +23,15 @@ export const Router: VFC = memo(() => {
       囲った範囲で利用できる
       */}
       {/* <LoginUserProvider> */}
-        {/*
+      {/*
         ログイン画面を指定
         ルート画面となるため、exact を指定し、パスの完全一致で
         遷移するようにする
         */}
-        <Route exact path="/">
-          <Login />
-        </Route>
-        {/*
+      <Route exact path="/">
+        <Login />
+      </Route>
+      {/*
         ログイン後の画面を /home で設定
         render 属性のアロー関数の中の Switch タグ内で
         ログイン後の遷移画面を指定する
@@ -41,26 +40,26 @@ export const Router: VFC = memo(() => {
         render={(props) => ()}
         console.log(props)
         */}
-        <Route
-          path="/home"
-          render={({ match: { url } }) => (
-            <Switch>
-              {/* HomeRouters.tsx で設定した画面を map で回す */}
-              {homeRoutes.map((route) => (
-                // map で処理する場合は、key の指定が必要
-                // path は /home に続けて各ページのパスを連結
-                <Route
-                  key={route.path}
-                  exact={route.exact}
-                  path={`${url}${route.path}`}
-                >
-                  {/* ヘッダー有りのレイアウトでページを表示 */}
-                  <HeaderLayout>{route.children}</HeaderLayout>
-                </Route>
-              ))}
-            </Switch>
-          )}
-        />
+      <Route
+        path="/home"
+        render={({ match: { url } }) => (
+          <Switch>
+            {/* HomeRouters.tsx で設定した画面を map で回す */}
+            {homeRoutes.map((route) => (
+              // map で処理する場合は、key の指定が必要
+              // path は /home に続けて各ページのパスを連結
+              <Route
+                key={route.path}
+                exact={route.exact}
+                path={`${url}${route.path}`}
+              >
+                {/* ヘッダー有りのレイアウトでページを表示 */}
+                <HeaderLayout>{route.children}</HeaderLayout>
+              </Route>
+            ))}
+          </Switch>
+        )}
+      />
       {/* </LoginUserProvider> */}
       {/* 遷移画面に該当するパスが存在しない場合は 404 ページへ遷移 */}
       <Route path="*">
