@@ -1,5 +1,5 @@
 // ログインページのコンポーネント
-import React, { memo, VFC } from 'react';
+import React, { ChangeEvent, memo, useState, VFC } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,7 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from 'react-router-dom';
+import { useAuth } from "../../hooks/useAuth";
+import { PrimaryButton } from '../atoms/button/PrimaryButton';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,9 +39,24 @@ const useStyles = makeStyles((theme) => ({
 
 // export default function Login() {
 export const Login: VFC = memo(() => {
+
+  // State
+  // ユーザーID
+  const [userId, setUserId] = useState('');
+
+  // カスタムフック
+  // 認証結果と認証の状態を示す変数を　useAuth にて定義
+  const { login, loading } = useAuth();
+
+  // イベント
+  // ユーザーID State のセット
+  // 入力時のイベントは e: ChangeEvent<HTMLInputElement で取得し、
+  // e.target.valueで設定する
+  const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => setUserId(e.target.value);
+  // ログインボタン押下時の処理
+  const onClickLogin = () => login(userId);
+
   const classes = useStyles();
-  const history = useHistory();
-  const onClickLogin = () => history.push("/home");
 
   return (
     <Container component="main" maxWidth="xs">
@@ -51,7 +68,7 @@ export const Login: VFC = memo(() => {
         <Typography component="h1" variant="h5">
           ログイン
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} >
           <TextField
             variant="outlined"
             margin="normal"
@@ -62,6 +79,8 @@ export const Login: VFC = memo(() => {
             name="userId"
             autoComplete="userId"
             autoFocus
+            value={userId}
+            onChange={onChangeUserId}
           />
           <TextField
             variant="outlined"
@@ -78,7 +97,7 @@ export const Login: VFC = memo(() => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-          <Button
+          {/* <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -87,7 +106,14 @@ export const Login: VFC = memo(() => {
             onClick={onClickLogin}
           >
             ログイン
-          </Button>
+          </Button> */}
+          <PrimaryButton
+            disabled={userId === ""}
+            loading={loading}
+            onClick={onClickLogin}
+          >
+            ログイン
+          </PrimaryButton>
           {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -105,6 +131,3 @@ export const Login: VFC = memo(() => {
     </Container>
   );
 });
-
-
-// }

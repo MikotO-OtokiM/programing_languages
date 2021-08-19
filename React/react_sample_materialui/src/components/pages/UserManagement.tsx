@@ -5,6 +5,7 @@ import { Box, Grid, makeStyles } from "@material-ui/core";
 import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { useSelectUser } from "../../hooks/useSelectUser";
+import { useLoginUser } from "../../hooks/useLoginUser";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
  * 変更された時のみ再レンダリングするようにする
  */
 export const UserManagement: VFC = memo(() => {
+  // カスタムフック
+  // Context のログインユーザ情報を利用するカスタムフック
+  const { loginUser } = useLoginUser();
   // ユーザー情報取得用
   const { getUsers, loading, users } = useAllUsers();
   // 選択したユーザー情報のモーダル表示用
@@ -71,6 +75,7 @@ export const UserManagement: VFC = memo(() => {
       <UserDetailModal
         open={open}
         user={selectedUser!}
+        isAdmin={loginUser?.isAdmin}
         onClose={handleClose}
         ariaLabelledby="simple-modal-title"
         ariaDescribedby="simple-modal-description"

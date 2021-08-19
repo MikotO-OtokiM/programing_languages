@@ -1,7 +1,13 @@
 // プライマリボタンのコンポーネント
+import { makeStyles } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { memo, ReactNode, VFC } from "react";
 
+const useStyles = makeStyles((theme) => ({
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 type Props = {
   children: ReactNode;
@@ -17,18 +23,16 @@ type Props = {
  */
 export const PrimaryButton: VFC<Props> = memo((props) => {
   const { children, disabled = false, loading = false, onClick } = props;
+  const classes = useStyles();
+
   return (
-    // <Button
-    //   bg="teal.400"
-    //   color="white"
-    //   _hover={{ opacity: 0.8 }}
-    //   disabled={disabled || loading}
-    //   isLoading={loading}
-    //   onClick={onClick}
-    // >
-    //   {children}
-    // </Button>
     <Button
+      // type="submit"
+      fullWidth
+      variant="contained"
+      color="primary"
+      className={classes.submit}
+      disabled={disabled || loading}
       onClick={onClick}
     >
       {children}

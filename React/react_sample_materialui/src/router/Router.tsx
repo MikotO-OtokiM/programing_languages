@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { Login } from "../components/pages/Login";
 import { Page404 } from "../components/pages/Page404";
 import { HeaderLayout } from "../components/templates/HeaderLayout";
-// import { LoginUserProvider } from "../providers/LoginUserProvider";
+import { LoginUserProvider } from "../providers/LoginUserProvider";
 import { homeRoutes } from "./HomeRouters";
 
 export const Router: VFC = memo(() => {
@@ -22,7 +22,7 @@ export const Router: VFC = memo(() => {
       Context を利用してグローバルに値を利用する場合は、作成した Provider タグで
       囲った範囲で利用できる
       */}
-      {/* <LoginUserProvider> */}
+      <LoginUserProvider>
       {/*
         ログイン画面を指定
         ルート画面となるため、exact を指定し、パスの完全一致で
@@ -60,7 +60,7 @@ export const Router: VFC = memo(() => {
           </Switch>
         )}
       />
-      {/* </LoginUserProvider> */}
+      </LoginUserProvider>
       {/* 遷移画面に該当するパスが存在しない場合は 404 ページへ遷移 */}
       <Route path="*">
         <Page404 />
