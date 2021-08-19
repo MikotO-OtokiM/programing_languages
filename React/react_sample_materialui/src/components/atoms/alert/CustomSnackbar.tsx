@@ -23,7 +23,6 @@ type Props = {
   message: string;
 }
 
-// export const CustomSnackbar = () => {
 export const CustomSnackbar = (props: Props) => {
   const { isOpen = false, autoHideDuration, severity, message } = props;
 
