@@ -15,7 +15,8 @@ const [l0, l1, l2] = list;
 // data0
 console.log(l0); 
 
-// 末尾に要素の追加
+// 末尾に要素の追加　★concat() での結合との違いに注意★
+// push は配列の末尾に引数の要素を追加する　また戻り値は新しい配列の要素数となる
 list.push('data3');
 console.log(list);
 
@@ -50,6 +51,14 @@ console.log(numList2);
 /**
  * 以下のように出力される
  * [1, 3, 5]
+ */
+
+// 配列の結合
+// concat() 結合後の新しいオブジェクトを返す
+console.log(numList.concat(numList2))
+/**
+ * 以下のように出力される
+ * [1, 2, 3, 4, 5, 1, 3, 5]
  */
 
 
