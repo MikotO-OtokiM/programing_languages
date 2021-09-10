@@ -57,3 +57,11 @@ const x = 'JavaScript';
 const t = `複数行の文字列
 を出力する${x}`;
 console.log(t);
+
+// 0 埋め
+let zeroume = 1;
+console.log(('000' + zeroume).slice( -3 ))
+/**
+ * 以下のように出力される
+ * 001
+ */
